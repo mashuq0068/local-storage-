@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <div id="countdown-timer"></div>
+    <button id="start-button">Start Countdown</button>
+
+    <script>
+        const countdownTimer = document.getElementById('countdown-timer');
+const startButton = document.getElementById('start-button');
+
+let remainingSeconds = 60; // Initial value
+
+function updateCountdown() {
+    countdownTimer.textContent = `Time remaining: ${remainingSeconds} seconds`;
+
+    if (remainingSeconds === 0) {
+        clearTimeout(timeoutId);
+        countdownTimer.textContent = 'Countdown finished!';
+    } else {
+        remainingSeconds--;
+        timeoutId = setTimeout(updateCountdown, 1000); // Update every second
+    }
+}
+
+let timeoutId;
+
+startButton.addEventListener('click', () => {
+    if (!timeoutId) {
+        updateCountdown();
+    }
+});
+
+    </script>
+</body>
+</html>
